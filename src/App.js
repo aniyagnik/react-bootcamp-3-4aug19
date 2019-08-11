@@ -72,7 +72,24 @@ class App extends React.Component {
   };
    
     deleteItem = (todo) => {
-    let todoList = this.state.todoList.filter(item =>todo.id!== item.id)
+    let todoList = this.state.todoList.filter(item =>todo.id!==item.id)
+       this.setState({
+      todoList
+    });
+    
+  };
+
+  
+  deleteStriked = () => {
+    let todoList = this.state.todoList.filter(item =>item.isDone===false)
+       this.setState({
+      todoList
+    });
+  };
+
+  
+  deleteAll= () => {
+    let todoList = this.state.todoList.filter(item =>item.id=== item.id+1)
        this.setState({
       todoList
     });
@@ -94,6 +111,11 @@ class App extends React.Component {
             onChange={this.handleInputChange}
           />
           <button onClick={this.handleOnClick}>Add Todo</button>
+          
+          <button onClick={this.deleteStriked}>Delete Striked</button>
+          
+          
+          <button onClick={this.deleteAll}>Delete All</button>
           
         </div>
         {this.state.todoList.map(item => (
